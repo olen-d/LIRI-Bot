@@ -85,8 +85,37 @@ switch (p[0]) {
                 // console.log(er); 
             });
         break;
+    case "movie-this":
+    p.shift();
+        if (p.length === 0) { p.push("Mr. Nobody")} // Default to Nickleback if the user doesn't bother entering an artist/band 
+        let m = parse.userInput(p);
+        axios.get(`https://www.omdbapi.com/?t=${encodeURIComponent(m)}&plot=short&apikey=trilogy`)
+            .then((r) => {
+                // Title
+                console.log("Title: " + r.data.Title);
+                // Year
+                console.log("Year: " + r.data.Year);
+                // IMDB Rating
+                console.log(r.data.Ratings[0].Source + " Rating: " + r.data.Ratings[0].Value);
+                // Rotten Tomatoes Rating
+                console.log(r.data.Ratings[1].Source + " Rating: " + r.data.Ratings[1].Value);
+                // Country
+                console.log("Country: " + r.data.Country);
+                // Language
+                console.log("Language: " + r.data.Language);
+                // Plot
+                console.log("Plot: " + r.data.Plot);
+                // Actors
+                console.log("Actors: " + r.data.Actors);
+            })
+            .catch((er) => {
+                console.log("Epic fail. Have you tried turning it off and then back on again?");
+                // console.log(er); 
+            });
+        break;
 
     default:
     case "help":
-        console.log("usage: node liri.js\t[concert-this <band/artist>] [spotify-this-song <song>]")
+        console.log("usage: node liri.js\t[concert-this <band/artist>] [spotify-this-song <song>]\n\t\t\t[movie-this <movie title>]")
+        break;
 }
