@@ -19,9 +19,11 @@ The purpose of this project is to provide a CLI for accessing various APIs and r
 To run this application, you will need node.js, Spotify, Bands in Town, and OMDB API keys, and a .env file with the following lines:
 
 SPOTIFY_ID=Your Spotify ID
+
 SPOTIFY_SECRET=Your Spotify Secret 
 
 BANDS_IN_TOWN_KEY=Your Bands In Town Key
+
 OMDB_KEY=Your OMDB Key
 
 ## Project Maintenance
