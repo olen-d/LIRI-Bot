@@ -8,6 +8,9 @@ const axios = require("axios");
 const moment = require("moment");
 const fs = require("fs");
 
+const BITkey = process.env.BANDS_IN_TOWN_KEY;
+const OMDBkey = process.env.OMDB_KEY;
+
 let p = process.argv.slice(2);
 
 const parse = {
@@ -51,7 +54,7 @@ const liri = async() => {
             p.shift();
             if (p.length === 0) { p.push("Nickleback")} // Default to Nickleback if the user doesn't bother entering an artist/band 
             let a = parse.userInput(p);
-            axios.get(`https://rest.bandsintown.com/artists/${encodeURIComponent(a)}/events?app_id=codingbootcamp`)
+            axios.get(`https://rest.bandsintown.com/artists/${encodeURIComponent(a)}/events?app_id=${BITkey}`)
                 .then((r) => {
                     let bData = [];
                     if (r.data.length > 0) {
@@ -130,7 +133,7 @@ const liri = async() => {
         p.shift();
             if (p.length === 0) { p.push("Mr. Nobody")} // Default to Mr. Nobody if the user doesn't feel like entering a movie 
             let m = parse.userInput(p);
-            axios.get(`https://www.omdbapi.com/?t=${encodeURIComponent(m)}&plot=short&apikey=trilogy`)
+            axios.get(`https://www.omdbapi.com/?t=${encodeURIComponent(m)}&plot=short&apikey=${OMDBkey}`)
                 .then((r) => {
                     let mData = [];
 
